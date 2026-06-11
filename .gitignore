@@ -1,0 +1,17 @@
+# Entornos virtuales y caché de Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+pytest.ini
+locustfile.py
+
+# Dependencias y compilación de React/Vite
+frontend-service/node_modules/
+frontend-service/dist/
+
+# Carpetas inactivas o futuras (ocultas por ahora)
+docs/
+frontend-react/
+notification-service/
+user-service/
