@@ -27,16 +27,22 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Reservation Microservice")
 
-# Configuración de CORS estricta para la comunicación sin bloqueos con React
+# Dominios explícitamente permitidos para transferir credenciales de forma segura
+origins = [
+    "https://mar.origenet.cl",  # Tu dominio de producción en cPanel
+    "http://localhost:5173",  # Tu entorno local de desarrollo con Vite
+]
+
+# Configuración de CORS estricta y corregida para la comunicación con React
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Configurar el motor de renderizado de vistas para el Administrador
+# Configurar el motor de renderizado de vistas para el Administrator
 templates = Jinja2Templates(
     directory=str(Path(__file__).resolve().parent.parent / "templates")
 )

@@ -8,10 +8,16 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Auth & User Microservice")
 
-# Configuración de CORS para permitir la conexión desde el frontend
+# Dominios explícitamente permitidos para transferir credenciales de forma segura
+origins = [
+    "https://mar.origenet.cl",  # Tu dominio de producción en cPanel
+    "http://localhost:5173",  # Tu entorno local de desarrollo con Vite
+]
+
+# Configuración de CORS corregida sin asterisco para dar soporte a credentials=True
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
