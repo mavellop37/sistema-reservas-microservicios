@@ -110,7 +110,7 @@ function App() {
     e.preventDefault();
     // 🌟 INTERCEPCIÓN DIRECTA: Redirección inmediata al panel de administración
     if (
-      authFormData.email === "admin@gmail.com" &&
+      authFormData.email === "admin@admin.com" &&
       authFormData.password === "123456"
     ) {
       window.location.href = `${API_RESERVATION_URL}/admin`;
@@ -252,12 +252,15 @@ function App() {
       return;
 
     try {
-      const response = await fetch(`${API_RESERVATION_URL}/reservations/${id}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
+      const response = await fetch(
+        `${API_RESERVATION_URL}/reservations/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         },
-      });
+      );
 
       if (response.ok) {
         setNotification({
